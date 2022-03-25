@@ -1,17 +1,19 @@
+import imp
 from sqlalchemy import create_engine
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
 # from config import setting
+from util import get_db
 
 # SQLALCHEMY_DATABASE_URL = 'postgres://<username>:<password>@<ip-address/hostname>/<database-name>'
-SQLALCHEMY_DATABASE_URL = 'postgresql://postgres:uxairkhan@localhost/alembic'
-# SQLALCHEMY_DATABASE_URL = f'postgresql://{setting.database_username}:{setting.database_password}@{setting.database_hostname}:{setting.database_port}/{setting.database_name}'
+# SQLALCHEMY_DATABASE_URL = 'postgresql://postgres:uxairkhan@localhost/alembic'
+SQLALCHEMY_DATABASE_URL = get_db()
 
 engine  = create_engine(SQLALCHEMY_DATABASE_URL)
 
 SessionLocal = sessionmaker(autocommit=False , autoflush=False , bind=engine)
                 
-Base = declarative_base()
+# Base = declarative_base()
 
 
 def get_db():
